@@ -7,8 +7,8 @@ import 'package:flutter/painting.dart';
 class CirclePlayer extends BodyComponent {
   final Vector2 initialPosition;
   final double radius;
-  final double moveSpeed = 8.0; // Increased for more noticeable movement
-  final double maxHorizontalVelocity = 15.0; // Increased max speed
+  final double moveSpeed = 15.0; // Increased for more noticeable movement
+  final double maxHorizontalVelocity = 30.0; // Increased max speed
 
   CirclePlayer(this.initialPosition, {this.radius = 1.5}); // Default radius
 

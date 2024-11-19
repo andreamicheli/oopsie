@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'dart:ui';
+import 'dart:math' as math;
 
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_kenney_xml/flame_kenney_xml.dart';
@@ -10,7 +11,10 @@ import 'package:flutter/services.dart';
 import 'package:forge2d_game/components/background.dart';
 import 'package:forge2d_game/components/circle_player.dart';
 import 'package:forge2d_game/components/ground.dart';
+import 'package:forge2d_game/components/obstacle.dart';
+import 'package:forge2d_game/components/spawner.dart';
 import 'package:forge2d_game/components/touchControl.dart';
+import 'package:forge2d_game/components/wall.dart';
 
 class OopsieGame extends Forge2DGame {
   OopsieGame()
@@ -21,7 +25,9 @@ class OopsieGame extends Forge2DGame {
         );
 
   late final XmlSpriteSheet tiles;
+  late final XmlSpriteSheet dirt;
   late final CirclePlayer player;
+  Timer? _spawnTimer;
 
   @override
   FutureOr<void> onLoad() async {
@@ -33,10 +39,31 @@ class OopsieGame extends Forge2DGame {
       ),
     ]);
     tiles = spriteSheets[0];
-    // Add the player
+    // _spawnTimer = Timer(
+    //   2, // Duration in seconds
+    //   onTick: spawnObject,
+    //   repeat: true, // Makes it periodic
+    // );
+
     player = CirclePlayer(Vector2(5, 10), radius: 2.0); // Adjust size if needed
     await world.add(Background(sprite: Sprite(backgroundImage)));
+    await world.add(Wall(
+        Vector2(camera.visibleWorldRect.left, camera.visibleWorldRect.bottom),
+        camera.visibleWorldRect.height));
+    await world.add(Wall(
+        Vector2(camera.visibleWorldRect.right, camera.visibleWorldRect.bottom),
+        camera.visibleWorldRect.height));
+    await world.add(
+      RectangleSpawner(
+        sprite: tiles.getSprite('sand.png'),
+        game: this,
+        rectangleWidth: 2, // Width in game units
+        rectangleHeight: 1, // Height in game units
+        spawnInterval: 1.5, // Spawn every 1.5 seconds
+      ),
+    );
     await world.add(player);
+    _spawnTimer?.start();
 
     await addGround(); // Add this line
 
@@ -84,13 +111,18 @@ class OopsieGame extends Forge2DGame {
     }
   }
 
-  // @override
-  // void update(double dt) {
-  //   // Placeholder for game update logic.
-  // }
+  @override
+  void onRemove() {
+    _spawnTimer?.stop();
+    super.onRemove();
+  }
+}
 
-  // @override
-  // void render(Canvas canvas) {
-  //   // Placeholder for game rendering logic.
-  // }
+double getRandomX(Vector2 screenDimensions) {
+  final random = math.Random();
+  return random.nextDouble() * screenDimensions.x;
+}
+
+double getRandomNumberInRange(double max) {
+  return max * (0.5 + 0.5 * (Vector2.random().x));
 }
