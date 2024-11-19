@@ -20,22 +20,6 @@ class OopsieGame extends Forge2DGame {
           world: Forge2DWorld(), // Explicitly create world
         );
 
-  @override
-  void onKeyEvent(KeyEvent event) {
-    if (event is KeyDownEvent) {
-      switch (event.logicalKey) {
-        case LogicalKeyboardKey.arrowLeft:
-        case LogicalKeyboardKey.keyA:
-          player.moveLeft();
-          break;
-        case LogicalKeyboardKey.arrowRight:
-        case LogicalKeyboardKey.keyD:
-          player.moveRight();
-          break;
-      }
-    }
-  }
-
   late final XmlSpriteSheet tiles;
   late final CirclePlayer player;
 
