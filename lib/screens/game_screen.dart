@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../game.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flame/game.dart';
 
 class GameScreen extends StatelessWidget {
-  final UpsieGame _game = UpsieGame();
+  final OopsieGame _game = OopsieGame();
 
   @override
   Widget build(BuildContext context) {
