@@ -27,7 +27,12 @@ class OopsieGame extends Forge2DGame {
   late final XmlSpriteSheet tiles;
   late final XmlSpriteSheet dirt;
   late final CirclePlayer player;
+  double score = 0;
   Timer? _spawnTimer;
+  void incrementScore() {
+    score += 1;
+    print("Score: $score"); // For debugging or replace with UI update
+  }
 
   @override
   FutureOr<void> onLoad() async {
@@ -39,11 +44,6 @@ class OopsieGame extends Forge2DGame {
       ),
     ]);
     tiles = spriteSheets[0];
-    // _spawnTimer = Timer(
-    //   2, // Duration in seconds
-    //   onTick: spawnObject,
-    //   repeat: true, // Makes it periodic
-    // );
 
     player = CirclePlayer(Vector2(5, 10), radius: 2.0); // Adjust size if needed
     await world.add(Background(sprite: Sprite(backgroundImage)));
@@ -57,9 +57,9 @@ class OopsieGame extends Forge2DGame {
       RectangleSpawner(
         sprite: tiles.getSprite('sand.png'),
         game: this,
+        gameRef: this,
         rectangleWidth: 2, // Width in game units
         rectangleHeight: 1, // Height in game units
-        spawnInterval: 1.5, // Spawn every 1.5 seconds
       ),
     );
     await world.add(player);

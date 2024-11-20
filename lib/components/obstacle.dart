@@ -3,15 +3,19 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'dart:math';
+import 'package:forge2d_game/game.dart';
 
-class Obstacle extends BodyComponent {
+import 'ground.dart';
+
+class Obstacle extends BodyComponent with ContactCallbacks {
+  final OopsieGame gameRef;
   final Sprite sprite;
   final double width;
   final double height;
   final Vector2 spawnPosition;
 
   Obstacle({
+    required this.gameRef,
     required this.sprite,
     required this.width,
     required this.height,
@@ -33,23 +37,24 @@ class Obstacle extends BodyComponent {
 
     final body = world.createBody(bodyDef);
     body.createFixture(fixtureDef);
-
-    // final spriteComponent = SpriteComponent(
-    //     anchor: Anchor.center,
-    //     sprite: sprite,
-    //     size: Vector2(width, 2),
-    //     position: spawnPosition);
-
-    // add(spriteComponent);
+    body.userData = this;
 
     return body;
+  }
+
+  @override
+  void beginContact(Object other, Contact contact) {
+    print('Contact with: ${other.runtimeType}');
+    if (other is Ground) {
+      removeFromParent(); // Remove the obstacle from the game
+    }
   }
 
   @override
   void render(Canvas canvas) {
     super.render(canvas);
     final paint = Paint()
-      ..color = const Color.fromARGB(255, 255, 0, 255); // Green color
+      ..color = const Color.fromARGB(255, 255, 0, 255); // Purple color
     final outlinePaint = Paint()
       ..color = const Color(0xFF000000) // Black outline
       ..strokeWidth = 0.2
@@ -64,11 +69,12 @@ class Obstacle extends BodyComponent {
       paint,
     );
     canvas.drawRect(
-        Rect.fromCenter(
-          center: Offset.zero,
-          width: width,
-          height: height,
-        ),
-        outlinePaint);
+      Rect.fromCenter(
+        center: Offset.zero,
+        width: width,
+        height: height,
+      ),
+      outlinePaint,
+    );
   }
 }

@@ -5,7 +5,7 @@ import 'body_component_with_user_data.dart'; // Add this import
 
 const groundSize = 7.0;
 
-class Ground extends BodyComponentWithUserData {
+class Ground extends BodyComponentWithUserData with ContactCallbacks {
   Ground(Vector2 position, Sprite sprite)
       : super(
           renderBody: false,
@@ -27,4 +27,12 @@ class Ground extends BodyComponentWithUserData {
             ),
           ],
         );
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    // Assign userData after the body is created
+    body.userData = this;
+  }
 }
