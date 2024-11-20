@@ -7,11 +7,13 @@ import 'dart:math' as math;
 
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_kenney_xml/flame_kenney_xml.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge2d_game/components/background.dart';
 import 'package:forge2d_game/components/circle_player.dart';
 import 'package:forge2d_game/components/ground.dart';
 import 'package:forge2d_game/components/obstacle.dart';
+import 'package:forge2d_game/components/scoreDisplay.dart';
 import 'package:forge2d_game/components/spawner.dart';
 import 'package:forge2d_game/components/touchControl.dart';
 import 'package:forge2d_game/components/wall.dart';
@@ -80,6 +82,8 @@ class OopsieGame extends Forge2DGame {
         onPressedCallback: () => player.moveRight(),
       )..position = Vector2(size.x / 2, 0),
     );
+
+    await world.add(ScoreDisplay());
 
     return super.onLoad();
   }

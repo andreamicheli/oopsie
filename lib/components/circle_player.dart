@@ -4,7 +4,7 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/painting.dart';
 
-class CirclePlayer extends BodyComponent {
+class CirclePlayer extends BodyComponent with ContactCallbacks {
   final Vector2 initialPosition;
   final double radius;
   final double moveSpeed = 15.0; // Increased for more noticeable movement
@@ -58,5 +58,13 @@ class CirclePlayer extends BodyComponent {
     if (velocity.x < maxHorizontalVelocity) {
       body.applyLinearImpulse(Vector2(moveSpeed, 0));
     }
+  }
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    // Assign userData after the body is created
+    body.userData = this;
   }
 }

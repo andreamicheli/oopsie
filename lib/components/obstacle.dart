@@ -3,7 +3,9 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:forge2d_game/components/circle_player.dart';
 import 'package:forge2d_game/game.dart';
+import 'package:get/get.dart';
 
 import 'ground.dart';
 
@@ -44,9 +46,14 @@ class Obstacle extends BodyComponent with ContactCallbacks {
 
   @override
   void beginContact(Object other, Contact contact) {
-    print('Contact with: ${other.runtimeType}');
     if (other is Ground) {
+      gameRef.incrementScore();
       removeFromParent(); // Remove the obstacle from the game
+    }
+    if (other is CirclePlayer) {
+      removeFromParent(); // Remove the obstacle from the game
+      Get.toNamed("/results");
+      gameRef.pauseEngine();
     }
   }
 
