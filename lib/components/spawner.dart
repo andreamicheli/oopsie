@@ -28,9 +28,9 @@ class RectangleSpawner extends Component {
     required this.rectangleHeight,
     this.intervalIncreaseRate = 0.2, // Increase by 0.2 seconds each spawn
   })  : initialSpawnInterval =
-            5.0 / (2 * (Get.find<LevelController>().currentLevel.value + 1)),
+            5.0 / (3 * (Get.find<LevelController>().currentLevel.value + 1)),
         currentSpawnInterval =
-            5.0 / (2 * (Get.find<LevelController>().currentLevel.value + 1)) {
+            5.0 / (3 * (Get.find<LevelController>().currentLevel.value + 1)) {
     _spawnTimer = Timer(
       currentSpawnInterval,
       onTick: _spawnRectangle,

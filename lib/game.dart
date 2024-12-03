@@ -77,6 +77,8 @@ class OopsieGame extends Forge2DGame {
 
     await addGround(); // Add this line
 
+    await world.add(ScoreDisplay());
+
     await add(
       TouchControl(
         isLeftSide: true,
@@ -90,8 +92,6 @@ class OopsieGame extends Forge2DGame {
         onPressedCallback: () => player.moveRight(),
       )..position = Vector2(size.x / 2, 0),
     );
-
-    await world.add(ScoreDisplay());
 
     return super.onLoad();
   }

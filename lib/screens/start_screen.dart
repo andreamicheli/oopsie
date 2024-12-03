@@ -15,8 +15,10 @@ class StartScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text('Oopsie!'),
+            const Text('Try to avoid the obstacles!'),
             const Text(
-                'Try to avoid the obstacles while subdividing as much as you can!'),
+                'Touch the screen on the right side and left side to move in the respective directions. Collect 25 points to unlock the next level'),
             const SizedBox(height: 20),
             Column(
               children: [
