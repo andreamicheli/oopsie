@@ -17,6 +17,8 @@ import 'package:forge2d_game/components/scoreDisplay.dart';
 import 'package:forge2d_game/components/spawner.dart';
 import 'package:forge2d_game/components/touchControl.dart';
 import 'package:forge2d_game/components/wall.dart';
+import 'package:forge2d_game/controller.dart';
+import 'package:get/get.dart';
 
 class OopsieGame extends Forge2DGame {
   OopsieGame()
@@ -30,6 +32,7 @@ class OopsieGame extends Forge2DGame {
   late final XmlSpriteSheet dirt;
   late final CirclePlayer player;
   double score = 0;
+  final levelController = Get.find<LevelController>();
   Timer? _spawnTimer;
   void incrementScore() {
     score += 1;
@@ -38,7 +41,11 @@ class OopsieGame extends Forge2DGame {
 
   @override
   FutureOr<void> onLoad() async {
-    final backgroundImage = await images.load('background.jpg');
+    final backgroundImages = await Future.wait([
+      images.load('level1.jpg'),
+      images.load('level2.jpg'),
+      images.load('level3.jpg'),
+    ]);
     final spriteSheets = await Future.wait([
       XmlSpriteSheet.load(
         imagePath: 'spritesheet_tiles.png',
@@ -48,7 +55,8 @@ class OopsieGame extends Forge2DGame {
     tiles = spriteSheets[0];
 
     player = CirclePlayer(Vector2(5, 10), radius: 2.0); // Adjust size if needed
-    await world.add(Background(sprite: Sprite(backgroundImage)));
+    await world.add(Background(
+        sprite: Sprite(backgroundImages[levelController.currentLevel.value])));
     await world.add(Wall(
         Vector2(camera.visibleWorldRect.left, camera.visibleWorldRect.bottom),
         camera.visibleWorldRect.height));
@@ -112,6 +120,10 @@ class OopsieGame extends Forge2DGame {
       player.moveLeft();
     } else if (isTouchingRightSide) {
       player.moveRight();
+    }
+    if (score > 5) {
+      this.pauseEngine();
+      Get.toNamed("/next");
     }
   }
 
