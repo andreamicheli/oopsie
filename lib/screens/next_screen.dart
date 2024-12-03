@@ -18,6 +18,7 @@ class NextScreen extends StatelessWidget {
                 children: [
                   const Text(
                     'Congratulations! You can proceed with the next level',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -44,6 +45,7 @@ class NextScreen extends StatelessWidget {
                 children: [
                   const Text(
                     'Congratulations! You completed the game',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,

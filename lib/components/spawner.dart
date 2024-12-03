@@ -56,7 +56,7 @@ class RectangleSpawner extends Component {
 
     final rectangle = Obstacle(
       sprite: sprite,
-      width: _random.nextDouble() * 10,
+      width: 3 + _random.nextDouble() * 7,
       height: 2,
       spawnPosition: Vector2(spawnX, spawnY),
       gameRef: gameRef,
