@@ -121,7 +121,7 @@ class OopsieGame extends Forge2DGame {
     } else if (isTouchingRightSide) {
       player.moveRight();
     }
-    if (score > 5) {
+    if (score >= 25) {
       this.pauseEngine();
       Get.toNamed("/next");
     }

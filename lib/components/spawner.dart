@@ -3,7 +3,9 @@ import 'package:flame_forge2d/forge2d_game.dart';
 import 'dart:math';
 
 import 'package:forge2d_game/components/obstacle.dart';
+import 'package:forge2d_game/controller.dart';
 import 'package:forge2d_game/game.dart';
+import 'package:get/get.dart';
 
 class RectangleSpawner extends Component {
   final Forge2DGame game;
@@ -11,11 +13,12 @@ class RectangleSpawner extends Component {
   final Sprite sprite;
   final double rectangleWidth;
   final double rectangleHeight;
-  final double initialSpawnInterval;
+  late final double initialSpawnInterval;
   final double intervalIncreaseRate;
-  double currentSpawnInterval;
+  late double currentSpawnInterval;
   late Timer _spawnTimer;
   final Random _random = Random();
+  final levelController = Get.find<LevelController>();
 
   RectangleSpawner({
     required this.sprite,
@@ -23,9 +26,11 @@ class RectangleSpawner extends Component {
     required this.gameRef,
     required this.rectangleWidth,
     required this.rectangleHeight,
-    this.initialSpawnInterval = 5.0,
     this.intervalIncreaseRate = 0.2, // Increase by 0.2 seconds each spawn
-  }) : currentSpawnInterval = initialSpawnInterval {
+  })  : initialSpawnInterval =
+            5.0 / (2 * (Get.find<LevelController>().currentLevel.value + 1)),
+        currentSpawnInterval =
+            5.0 / (2 * (Get.find<LevelController>().currentLevel.value + 1)) {
     _spawnTimer = Timer(
       currentSpawnInterval,
       onTick: _spawnRectangle,
