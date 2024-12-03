@@ -17,12 +17,6 @@ class GameScreen extends StatelessWidget {
         title: const Text('Game Screen'),
       ),
       body: GameWidget(game: _game),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.toNamed("/results");
-        },
-        child: const Icon(Icons.arrow_forward),
-      ),
     );
   }
 }
