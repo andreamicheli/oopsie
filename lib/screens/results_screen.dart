@@ -12,7 +12,7 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Game Results'),
+            const Text('Oh no! You got crushed :('),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
