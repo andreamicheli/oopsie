@@ -21,4 +21,4 @@ By selecting a level, the game screen appears. The ball can be controlled using:
 
 Avoid all obstacles and aim to score 25 points! If you get hit by an obstacle, a retry screen will appear. Successfully scoring 25 points will lead to a congratulatory screen with a button to access the next level. After completing Level 3, the final screen provides a link to the homepage, where you can freely explore all three levels.
 
-You can find the GitHub repository of the project at this link: [github.com/andreamicheli/oopsie](https://oopsie-delta.vercel.app/) Give a start! 😜
+You can find the GitHub repository of the project at this link: [github.com/andreamicheli/oopsie](https://oopsie-delta.vercel.app/) Give a star! 😜 ⭐️
