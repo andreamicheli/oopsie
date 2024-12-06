@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge2d_game/controller.dart';
+import 'package:forge2d_game/types.dart';
 import 'package:get/get.dart';
 
 class NextScreen extends StatelessWidget {
@@ -7,6 +8,8 @@ class NextScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Next Screen'),
@@ -16,11 +19,15 @@ class NextScreen extends StatelessWidget {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Congratulations! You can proceed with the next level',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: size.width > Breakpoints.md
+                          ? 40
+                          : size.width > Breakpoints.sm
+                              ? 30
+                              : 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -43,11 +50,15 @@ class NextScreen extends StatelessWidget {
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Congratulations! You completed the game',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: size.width > Breakpoints.md
+                          ? 40
+                          : size.width > Breakpoints.sm
+                              ? 30
+                              : 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
