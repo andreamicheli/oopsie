@@ -1,6 +1,6 @@
 # Oopsie
 
-<img src="https://bashify.io/i/BsCdK3" alt="screenshot of the app" width="200"/>
+<img src="https://bashify.io/img/ed3e57cff9cb00edceec7a6097ad9fe1" alt="screenshot of the app" width="200"/>
 
 ## Overview
 
