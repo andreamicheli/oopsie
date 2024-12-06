@@ -36,7 +36,7 @@ class StartScreen extends StatelessWidget {
             Container(
               width: size.width > Breakpoints.sm ? 520 : 420,
               child: Text(
-                'Touch the screen on the right side and left side to move in the respective directions. Collect 25 points to unlock the next level.',
+                'Touch the screen on the right side and left side or use the arrow keys to move in the respective directions. Collect 25 points to unlock the next level.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: size.width > Breakpoints.md ? 16 : 14,

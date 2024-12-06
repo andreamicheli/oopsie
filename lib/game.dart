@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'dart:ui';
 import 'dart:math' as math;
@@ -20,7 +21,7 @@ import 'package:forge2d_game/components/wall.dart';
 import 'package:forge2d_game/controller.dart';
 import 'package:get/get.dart';
 
-class OopsieGame extends Forge2DGame {
+class OopsieGame extends Forge2DGame with KeyboardEvents {
   OopsieGame()
       : super(
           gravity: Vector2(0, 10),
@@ -38,6 +39,8 @@ class OopsieGame extends Forge2DGame {
     score += 1;
     print("Score: $score"); // For debugging or replace with UI update
   }
+
+  final Set<LogicalKeyboardKey> _pressedKeys = {};
 
   @override
   FutureOr<void> onLoad() async {
@@ -116,15 +119,42 @@ class OopsieGame extends Forge2DGame {
   @override
   void update(double dt) {
     super.update(dt);
+
+    // Check keys in update loop for continuous movement
+    if (_pressedKeys.contains(LogicalKeyboardKey.arrowLeft) ||
+        _pressedKeys.contains(LogicalKeyboardKey.keyA)) {
+      player.moveLeft();
+    }
+    if (_pressedKeys.contains(LogicalKeyboardKey.arrowRight) ||
+        _pressedKeys.contains(LogicalKeyboardKey.keyD)) {
+      player.moveRight();
+    }
+
+    // Existing touch controls
     if (isTouchingLeftSide) {
       player.moveLeft();
     } else if (isTouchingRightSide) {
       player.moveRight();
     }
+
     if (score >= 25) {
       this.pauseEngine();
       Get.toNamed("/next");
     }
+  }
+
+  @override
+  KeyEventResult onKeyEvent(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) {
+    // Update pressed keys set
+    if (event is KeyDownEvent) {
+      _pressedKeys.add(event.logicalKey);
+    } else if (event is KeyUpEvent) {
+      _pressedKeys.remove(event.logicalKey);
+    }
+    return KeyEventResult.handled;
   }
 
   @override
