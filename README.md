@@ -1,5 +1,8 @@
 # Oopsie
 
+<img src="assets/images/wallpaper.png" alt="screenshot of the app" width="200"/>
+
+
 ## Overview
 
 Try to avoid the obstacles! In this game, you control a ball and avoid falling objects from the sky. Each time an object falls to the ground without hitting the player, you gain points. The goal is to collect a total of 25 points to unlock the next level. The game features 3 different levels, each with unique themes and increasing difficulty.
