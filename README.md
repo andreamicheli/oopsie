@@ -8,7 +8,7 @@ Try to avoid the obstacles! In this game, you control a ball and avoid falling o
 
 ## Deployment
 
-The game is live at the following URL: [oopsie-delta.vercel.app](https://oopsie-delta.vercel.app/)
+The game is live at the following URL: 
 
 ## Instructions
 
@@ -20,3 +20,5 @@ By selecting a level, the game screen appears. The ball can be controlled using:
 - **Mobile Devices**: Tapping the right or left side of the screen.
 
 Avoid all obstacles and aim to score 25 points! If you get hit by an obstacle, a retry screen will appear. Successfully scoring 25 points will lead to a congratulatory screen with a button to access the next level. After completing Level 3, the final screen provides a link to the homepage, where you can freely explore all three levels.
+
+You can find the GitHub repository of the project at this link: [github.com/andreamicheli/oopsie](https://oopsie-delta.vercel.app/) Give a start! 😜
