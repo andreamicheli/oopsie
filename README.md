@@ -1,7 +1,6 @@
 # Oopsie
 
-<img src="assets/images/wallpaper.png" alt="screenshot of the app" width="200"/>
-
+<img src="https://bashify.io/i/BsCdK3" alt="screenshot of the app" width="200"/>
 
 ## Overview
 
