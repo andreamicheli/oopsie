@@ -1,6 +1,6 @@
 # Oopsie
 
-<img src="https://bashify.io/img/ed3e57cff9cb00edceec7a6097ad9fe1" alt="screenshot of the app" width="200"/>
+<img src="https://github.com/andreamicheli/oopsie/blob/792343bb6a4d1d684e49396ecc1f4ad31605f1c3/assets/images/wallpaper.png" alt="screenshot of the app" width="200"/>
 
 ## Overview
 
