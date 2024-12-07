@@ -8,13 +8,13 @@ Try to avoid the obstacles! In this game, you control a ball and avoid falling o
 
 ## Deployment
 
-The game is live at the following URL: 
+The game is live at the following URL: [oopsie-delta.vercel.app](https://oopsie-delta.vercel.app/)
 
 ## Instructions
 
 The user is greeted with a starting screen featuring a brief game description and level selection. Initially, only Level 1 is accessible. By progressing through the game, players can unlock subsequent levels. The unlocked levels are stored in the device's local storage, ensuring data persists across browser sessions.
 
-By selecting a level, the game screen appears. The ball can be controlled using:
+By selecting a level, the game screen appears. The ball can be controlled using: 
 
 - **Desktop Keyboard**: Arrow keys or the A and D keys.
 - **Mobile Devices**: Tapping the right or left side of the screen.
